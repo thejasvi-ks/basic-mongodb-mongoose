@@ -50,7 +50,7 @@ var createManyPeople = function(arrayOfPeople, done) {
 
 var findPeopleByName = function(personName, done) {
   
-  Person.find()
+  Person.find({name:personName},(err,personFound) => err ? done(err) : done(null,personFound))
 
 };
 
@@ -65,7 +65,7 @@ var findPeopleByName = function(personName, done) {
 
 var findOneByFood = function(food, done) {
 
-  done(null/*, data*/);
+   Person.findOne({favoriteFoods:food},(err,data) => err ? done(err) : done(null,data))
   
 };
 
