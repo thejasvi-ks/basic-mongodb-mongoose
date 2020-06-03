@@ -196,22 +196,13 @@ var removeManyPeople = function(done) {
 var queryChain = function(done) {
   var foodToSearch = "burrito";
   
-  Person.find({})
-  
+  Person.find({favoriteFoods:foodToSearch})
+        .sort({name:1})
+        .limit(2)
+        .select({age:0})
+        .exec((err,data) => err ? done(err,data) : done(null,data));
+ 
 };
-
-/** **Well Done !!**
-/* You completed these challenges, let's go celebrate !
- */
-
-/** # Further Readings... #
-/*  ======================= */
-// If you are eager to learn and want to go deeper, You may look at :
-// * Indexes ( very important for query efficiency ),
-// * Pre/Post hooks,
-// * Validation,
-// * Schema Virtuals and  Model, Static, and Instance methods,
-// * and much more in the [mongoose docs](http://mongoosejs.com/docs/)
 
 
 //----- **DO NOT EDIT BELOW THIS LINE** ----------------------------------
