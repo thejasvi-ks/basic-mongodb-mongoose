@@ -1,20 +1,3 @@
-
-// const mongoose = require("mongoose");
-
-// const Schema = mongoose.Schema;
-
-// mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }); 
-
-// var PersonSchema = new Schema({
-  
-//   name : {type : String, required: true},
-//   age : Number,
-//   favoriteFoods : [String]
-  
-// });
-
-// var Person = mongoose.model('Person', PersonSchema);
-
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGO_URI)
 
@@ -30,23 +13,8 @@ const Person = mongoose.model('Person', personSchema)
 
 const createAndSavePerson = function(done) {
   const janeDoe = new Person({name:'Jane Doe',age:25,favoriteFoods:['Bread','Pizza','Pasta']})
-
   janeDoe.save((err, data) => err ? done(err) : done(null,data));
 };
-
-
-// var createAndSavePerson = function(done) {
-  
-//     var janeDoe = new Person({name:'Jane Doe',age:25,favoriteFoods:['Bread','Pizza','Pasta']});
-
-//     janeDoe.save((err,data) => {
-
-//       if(err) return console.error(err);
-//       done(null,data)
-
-//     });
-
-// };
 
 /** 4) Create many People with `Model.create()` */
 
@@ -57,9 +25,15 @@ const createAndSavePerson = function(done) {
 // Create many people using `Model.create()`, using the function argument
 // 'arrayOfPeople'.
 
+let arrayOfPeople = [
+  {name: "Frankie", age: 74, favoriteFoods: ["Del Taco"]},
+  {name: "Sol", age: 76, favoriteFoods: ["roast chicken"]},
+  {name: "Robert", age: 78, favoriteFoods: ["wine"]}
+];
+
 var createManyPeople = function(arrayOfPeople, done) {
     
-    done(null/*, data*/);
+    Person.create(arrayOfPeople,(err,people) => err ? done(err) : done(null,people))
     
 };
 
@@ -76,7 +50,7 @@ var createManyPeople = function(arrayOfPeople, done) {
 
 var findPeopleByName = function(personName, done) {
   
-  done(null/*, data*/);
+  Person.find()
 
 };
 
