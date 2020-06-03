@@ -138,12 +138,8 @@ var findEditThenSave = function(personId, done) {
 var findAndUpdate = function(personName, done) {
   var ageToSet = 20;
 
-  Person.findOneAndUpdate({name:personName},function(err,data){
-    
-    
-    
-  },{new:true});
-  done(null/*, data*/);
+  Person.findOneAndUpdate({name:personName},{$set:{age:ageToSet}},{new:true},(err,data) => err ? done(err,data) : done(null,data))
+
 };
 
 /** # CRU[D] part IV - DELETE #
@@ -158,7 +154,7 @@ var findAndUpdate = function(personName, done) {
 
 var removeById = function(personId, done) {
   
-  done(null/*, data*/);
+  Person.findByIdAndRemove({_id:personId},(err,data) => err ? done(err,data) : done(null,data))
     
 };
 
@@ -175,7 +171,8 @@ var removeById = function(personId, done) {
 var removeManyPeople = function(done) {
   var nameToRemove = "Mary";
 
-  done(null/*, data*/);
+  Person.remove({name:nameToRemove},(err,data) => err ? done(err,data) : done(null,data))
+  
 };
 
 /** # C[R]UD part V -  More about Queries # 
@@ -199,7 +196,7 @@ var removeManyPeople = function(done) {
 var queryChain = function(done) {
   var foodToSearch = "burrito";
   
-  done(null/*, data*/);
+  
 };
 
 /** **Well Done !!**
