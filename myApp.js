@@ -112,12 +112,12 @@ var findPersonById = function(personId, done) {
 var findEditThenSave = function(personId, done) {
   var foodToAdd = 'hamburger';
   
-  Person.findByid(personId,(err,data) => {
+  Person.findById(personId,(err,data) => {
       if(err) done(err)
-      data.favoriteFoods.push(foodToAdd).save();
-  })
+      data.favoriteFoods.push(foodToAdd);
+      data.save((err,data) => (err ? done(err) : done(null,data)));
+  });
   
-  done(null/*, data*/);
 };
 
 /** 9) New Update : Use `findOneAndUpdate()` */
@@ -138,6 +138,11 @@ var findEditThenSave = function(personId, done) {
 var findAndUpdate = function(personName, done) {
   var ageToSet = 20;
 
+  Person.findOneAndUpdate({name:personName},function(err,data){
+    
+    
+    
+  },{new:true});
   done(null/*, data*/);
 };
 
