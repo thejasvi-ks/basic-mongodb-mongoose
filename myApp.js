@@ -80,7 +80,7 @@ var findOneByFood = function(food, done) {
 
 var findPersonById = function(personId, done) {
   
-  done(null/*, data*/);
+  Person.findById({_id:personId},(err,data) => err ? done(err) : done(null,data))
   
 };
 
@@ -111,6 +111,11 @@ var findPersonById = function(personId, done) {
 
 var findEditThenSave = function(personId, done) {
   var foodToAdd = 'hamburger';
+  
+  Person.findByid(personId,(err,data) => {
+      if(err) done(err)
+      data.favoriteFoods.push(foodToAdd).save();
+  })
   
   done(null/*, data*/);
 };
