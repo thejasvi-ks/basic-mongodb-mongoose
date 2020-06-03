@@ -196,6 +196,7 @@ var removeManyPeople = function(done) {
 var queryChain = function(done) {
   var foodToSearch = "burrito";
   
+  Person.find({})
   
 };
 
