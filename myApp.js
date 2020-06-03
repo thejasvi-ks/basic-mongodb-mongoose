@@ -47,13 +47,15 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 
  /* = <Your Model> */
 
-var Person = new Schema({
+var PersonSchema = new Schema({
   
   name : {type : String, required: true},
   age : Number,
   favoriteFoods : [String]
   
 });
+
+let Person = mongoose.model('Person', PersonSchema);
 // **Note**: Glitch is a real server, and in real servers interactions with
 // the db are placed in handler functions, to be called when some event happens
 // (e.g. someone hits an endpoint on your API). We'll follow the same approach
@@ -90,6 +92,15 @@ var Person = new Schema({
 // });
 
 var createAndSavePerson = function(done) {
+  
+  let JaneDoe = new Person({name:'Jane Doe',age:25,favoriteFoods:['Bread','Pizza','Pasta']});
+  
+  JaneDoe.save((err,data) => {
+    
+    if(err) return err;
+    done(null,)
+    
+  });
   
   done(null /*, data*/);
 
