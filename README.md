@@ -1,2 +1,2 @@
-Mongo & Mongoose Basics
+FCC Mongo & Mongoose Challenges
 ===============================
